@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMobility : MonoBehaviour {
+public class PlayerMobility : MessageBehaviour {
 
 	public float speed;
 	private Animator anim;
-	private SpriteRenderer sr;
-	private Sprite originalSprite;
-
-	public GameObject explosion;
-	public GameObject countdown;
 
 	public bool hotline = true;
 
@@ -23,10 +18,8 @@ public class PlayerMobility : MonoBehaviour {
 		transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z);
 	}
 	
-	void Start () {
+	protected override void OnStart () {
 		anim = GetComponent<Animator>();
-		sr = GetComponent<SpriteRenderer>();
-		originalSprite = sr.sprite;
 	}
 
 	void Update () {
@@ -59,27 +52,5 @@ public class PlayerMobility : MonoBehaviour {
 				transform.position = Vector3.MoveTowards(transform.position, newPosition, speed);
 			}
 		}
-
-		if (Input.GetMouseButtonDown(0)) {
-			Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 2);
-
-			if (enemies.Length > 1) {
-				transform.position = enemies[1].transform.position;
-				sr.sprite = enemies[1].GetComponent<SpriteRenderer>().sprite;
-				Instantiate(explosion, transform.position, Quaternion.identity);
-				DestroyObject(enemies[1].gameObject);
-				Instantiate(countdown, new Vector3(0.5f, 0.1f, 0f), Quaternion.identity);
-				print ("in range");
-			} else {
-				print("out of range");
-			}
-		}
-	}
-
-	public void Unposess() {
-
-		// Uncomment for dragon
-		Instantiate(explosion, transform.position, Quaternion.identity);
-		sr.sprite = originalSprite;
-	}
+	}	
 }
