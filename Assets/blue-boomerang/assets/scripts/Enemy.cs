@@ -3,25 +3,35 @@ using System.Collections;
 
 public class Enemy : MessageBehaviour {
 
+	// How long the enemy survives after being possessed
 	public float timeToLive = 10.0f;
-	public float sightDistance = 2.0f;
+
+	// Awareness distances
+	public float alarmedThreshold = 5.0f;
+	public float aggressiveThreshold = 4.0f;
 	public float sightAngle = 90.0f;
 
-	public bool debug = false;
+	// How long the enemy remains in an alarmed state.
+	public float alarmedStateLength = 2.0f;
 
-	private bool timerActive = false;
+	// Timer variables
+	private bool dispossessTimerActive = false;
+	private bool alarmedTimerActive = false;	
+	private float alarmedTimerLeft;
 
 	private enum Awareness {
 		Unaware,
 		Alarmed,
-		Agressive
+		Aggressive
 	}
 
-	private Awareness awareness;
+	private Awareness awarenessLevel;
+
+	public bool debug = false;
 
 	public void OnMouseDown() {
 		Messenger.SendToListeners(new PossessMessage(gameObject, "Possess", "Requesting to become possessed."));
-		timerActive = true;
+		dispossessTimerActive = true;
 
 		GetComponent<Renderer>().enabled = false;
 		GetComponent<BoxCollider2D>().enabled = false;
@@ -29,64 +39,119 @@ public class Enemy : MessageBehaviour {
 
 	void FixedUpdate() {
 
-		// Retrieve a list of objects that are in the enemies aggression zone.
-		Collider2D[] inSight = Physics2D.OverlapCircleAll(transform.position, sightDistance);
+		// Retrieve a list of objects that are in the enemies alarmed zone.
+		Collider2D[] inSight = Physics2D.OverlapCircleAll(transform.position, alarmedThreshold);
 
 		// For every object that the enemy has the potential to see...
 		foreach (Collider2D seenObject in inSight) {
 
-			// If the player is within the enemy's aggression zone...
-			if (seenObject.gameObject.tag.Equals("Player")) { 
-
+			// If the player is within the enemy's alarmed zone...
+			if (seenObject.gameObject.tag.Equals("Player")) {
+				
 				// Calculate the direction between the enemy and the player.
 				Vector3 direction = (seenObject.transform.position - transform.position).normalized;
-
+				
 				// If the angle between the enemy and the player is within the
 				// enemy's line of sight...
 				if (Vector3.Angle(transform.up, direction) > sightAngle) {
-
+					
 					// Check to see if anything is between the enemy and the player.
 					RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
-
+					
 					if (debug) {
-						Debug.DrawRay(transform.position, direction * hit.distance, Color.red);
-						print (hit.collider.gameObject);
+
+						// In alarmed zone, but not yet seen.
+						Color rayColor = Color.blue;
+						
+						if (awarenessLevel == Awareness.Alarmed) {
+							rayColor = Color.yellow;
+						} else if (awarenessLevel == Awareness.Aggressive) {
+							rayColor = Color.red;
+						}
+						
+						Debug.DrawRay(transform.position, direction * hit.distance, rayColor);
 					}
-
+					
 					// If there is nothing between the enemy and the player...
-					if (hit.collider.gameObject.tag.Equals("Player")) {       
+					if (hit.collider.gameObject.tag.Equals("Player")) {
+						if (awarenessLevel == Awareness.Unaware) {
+							
+							// Make the enemy alarmed.
+							awarenessLevel = Awareness.Alarmed;
+							alarmedTimerActive = true;
 
-						// Make the enemy aggressive.
-						awareness = Awareness.Agressive;
+							PerformAlarmedBehavior(seenObject.transform);
+						} else if (awarenessLevel == Awareness.Aggressive) {
+							PerformAggressiveBehavior(seenObject.transform);
+						}
+					} 
 
-						// Set the seen Player as the object of pursuit.
-						GetComponent<SimpleAI2D>().Player = seenObject.transform;
+					// Otherwise something interrupted the enemy's line of sight, but
+					// the enemy was merely alarmed.
+					else if (awarenessLevel == Awareness.Alarmed) {
+
+						// Reset the enemy's level of awareness.
+						awarenessLevel = Awareness.Unaware;
+						alarmedTimerLeft = alarmedStateLength;
 					}
 				}
 			}
 		}
 	}
 
-	protected override void OnStart () {
-		awareness = Awareness.Unaware;
+	protected virtual void PerformAlarmedBehavior(Transform t) {
+
 	}
-	
-	void Update () {
-		if (timerActive) {
-			updateTimer();
+
+	protected virtual void PerformAggressiveBehavior(Transform t) {
+
+		// Set the seen Player as the object of pursuit.
+		GetComponent<SimpleAI2D>().Player = t;
+	}
+
+	protected override void OnStart () {
+		awarenessLevel = Awareness.Unaware;
+
+		alarmedTimerLeft = alarmedStateLength;
+
+		if (alarmedThreshold < aggressiveThreshold) {
+			print ("'alarmedThreshold' should be greater than 'aggressiveThreshold'");
 		}
 	}
 
-	private void updateTimer() {
+	void Update () {
+		if (dispossessTimerActive) {
+			DispossessTimer();
+		}
+		if (alarmedTimerActive) {
+			AlarmedTimer();
+		}
+	}
+
+	private void AlarmedTimer() {
+		alarmedTimerLeft -= Time.deltaTime;
+
+		if (alarmedTimerLeft <= 0.0f) {
+			awarenessLevel = Awareness.Aggressive;
+
+			alarmedTimerActive = false;
+		}
+	}
+
+	private void DispossessTimer() {
 		timeToLive -= Time.deltaTime;
 
 		print (timeToLive);
 
 		if (timeToLive <= 0.0f) {
+			dispossessTimerActive = false;
 			Messenger.SendToListeners(new PossessMessage(gameObject, "Dispossess", "Requesting to become dispossessed"));
 			DestroyObject(this.gameObject);
-		} else{
-			print((int)timeToLive + " seconds");
+		} else {
+
+			if (debug) {
+				print((int)timeToLive + " seconds");
+			}
 		}
 	}
 }
