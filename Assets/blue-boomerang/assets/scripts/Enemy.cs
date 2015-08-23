@@ -6,7 +6,13 @@ public class Enemy : MessageBehaviour {
 	public float timeToLive = 10.0f;
 	private bool timerActive = false;
 
-	GameObject player;
+	private enum Awareness {
+		Unaware,
+		Alarmed,
+		Agressive
+	}
+
+	private Awareness awareness;
 
 	public void OnMouseDown() {
 		Messenger.SendToListeners(new PossessMessage(gameObject, "Possess", "Requesting to become possessed."));
@@ -17,15 +23,13 @@ public class Enemy : MessageBehaviour {
 	}
 	
 	protected override void OnStart () {
-		player = GameObject.FindWithTag("Player");
+		awareness = Awareness.Unaware;
 	}
 
 	void Update () {
 		if (timerActive) {
 			updateTimer();
 		}
-
-//		GetComponent<Pathfinding2D>().FindPath(transform.position, player.transform.position);
 	}
 
 	private void updateTimer() {
