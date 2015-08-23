@@ -6,6 +6,8 @@ public class Enemy : MessageBehaviour {
 	public float timeToLive = 10.0f;
 	private bool timerActive = false;
 
+	GameObject player;
+
 	public void OnMouseDown() {
 		Messenger.SendToListeners(new PossessMessage(gameObject, "Possess", "Requesting to become possessed."));
 		timerActive = true;
@@ -15,13 +17,15 @@ public class Enemy : MessageBehaviour {
 	}
 	
 	protected override void OnStart () {
-
+		player = GameObject.FindWithTag("Player");
 	}
 
 	void Update () {
 		if (timerActive) {
 			updateTimer();
 		}
+
+//		GetComponent<Pathfinding2D>().FindPath(transform.position, player.transform.position);
 	}
 
 	private void updateTimer() {
@@ -33,7 +37,7 @@ public class Enemy : MessageBehaviour {
 			Messenger.SendToListeners(new PossessMessage(gameObject, "Dispossess", "Requesting to become dispossessed"));
 			DestroyObject(this.gameObject);
 		} else{
-			GetComponent<GUIText>().text = (int)timeToLive + " seconds";
+			print((int)timeToLive + " seconds");
 		}
 	}
 }
