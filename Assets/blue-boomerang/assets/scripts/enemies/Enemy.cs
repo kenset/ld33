@@ -11,14 +11,17 @@ public class Enemy : MessageBehaviour {
 	public float alarmedThreshold = 5.0f;
 	public float aggressiveThreshold = 4.0f;
 	public float sightAngle = 90.0f;
-
-	// How long the enemy remains in an alarmed state.
-	public float alarmedStateLength = 2.0f;
-
+	
 	// Timer variables
+	public float alarmedStateLength = 2.0f;
+	public float aggressionCooldownLength = 5.0f;
+
 	private bool dispossessTimerActive = false;
 	private bool alarmedTimerActive = false;	
+	private bool aggressionCooldownTimerActive = false;
+
 	private float alarmedTimerLeft;
+	private float aggressionCooldownTimerLeft;
 
 	public List<Transform> waypoints = new List<Transform>();
 	private int currentWaypoint;
@@ -99,6 +102,14 @@ public class Enemy : MessageBehaviour {
 						alarmedTimerActive = false;
 						alarmedTimerLeft = alarmedStateLength;
 					}
+
+					// Otherwise something interrupted the enemy's line of sight, but
+					// they are still aggressive. We should start the aggression cooldown.
+					// The enemy should be aggressive but not be in an aggression cooldown.
+					else if (awarenessLevel == Awareness.Aggressive && aggressionCooldownTimerActive == false) {
+						aggressionCooldownTimerActive = true;
+						aggressionCooldownTimerLeft = aggressionCooldownLength;
+					}
 				}
 			}
 		}
@@ -112,6 +123,7 @@ public class Enemy : MessageBehaviour {
 		awarenessLevel = Awareness.Unaware;
 
 		alarmedTimerLeft = alarmedStateLength;
+		aggressionCooldownTimerLeft = aggressionCooldownLength;
 
 		if (alarmedThreshold < aggressiveThreshold) {
 			print ("'alarmedThreshold' should be greater than 'aggressiveThreshold'");
@@ -123,12 +135,18 @@ public class Enemy : MessageBehaviour {
 	}
 
 	protected void Update () {
+
+		// Call different timers if applicable.
 		if (dispossessTimerActive) {
 			DispossessTimer();
 		}
 		if (alarmedTimerActive) {
 			AlarmedTimer();
 		}
+		if (aggressionCooldownTimerActive) {
+			AggressionCooldownTimer();
+		}
+
 
 		if (awarenessLevel == Awareness.Unaware) {
 			Patrol();
@@ -148,10 +166,20 @@ public class Enemy : MessageBehaviour {
 		GetComponent<SimpleAI2D>().Player = waypoints[currentWaypoint];
 	}
 
+	private void AggressionCooldownTimer() {
+		aggressionCooldownTimerLeft -= Time.deltaTime;
+
+		print(aggressionCooldownTimerLeft);
+
+		if (aggressionCooldownTimerLeft <= 0.0f) {
+			awarenessLevel = Awareness.Unaware;
+
+			aggressionCooldownTimerActive = false;
+		}
+	}
+
 	private void AlarmedTimer() {
 		alarmedTimerLeft -= Time.deltaTime;
-
-		print(alarmedTimerLeft);
 
 		if (alarmedTimerLeft <= 0.0f) {
 			awarenessLevel = Awareness.Aggressive;
