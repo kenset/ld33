@@ -32,19 +32,19 @@ public class PlayerMobility : MessageBehaviour {
 				
 				Vector3 newPosition = transform.position;
 				
-				if (Input.GetKeyDown(KeyCode.D)) {
+				if (Input.GetKey(KeyCode.D)) {
 					newPosition += Vector3.right;
 					anim.SetTrigger("walk_down");
 				}
-				if (Input.GetKeyDown(KeyCode.A)) {
+				if (Input.GetKey(KeyCode.A)) {
 					newPosition += Vector3.left;
 					anim.SetTrigger("walk_down");
 				}
-				if (Input.GetKeyDown(KeyCode.W)) {
+				if (Input.GetKey(KeyCode.W)) {
 					newPosition += Vector3.up;
 					anim.SetTrigger("walk_down");
 				}
-				if (Input.GetKeyDown(KeyCode.S)) {
+				if (Input.GetKey(KeyCode.S)) {
 					newPosition += Vector3.down;
 					anim.SetTrigger("walk_down");
 				}
