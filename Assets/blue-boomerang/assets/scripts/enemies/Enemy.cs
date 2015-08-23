@@ -105,8 +105,6 @@ public class Enemy : MessageBehaviour {
 
 	protected virtual void PerformAggressiveBehavior(Transform t) {
 
-		// Set the seen Player as the object of pursuit.
-		GetComponent<SimpleAI2D>().Player = t;
 	}
 
 	protected override void OnStart () {
