@@ -29,7 +29,7 @@ public class Enemy : MessageBehaviour {
 
 	public bool debug = false;
 
-	public void OnMouseDown() {
+	protected void OnMouseDown() {
 		Messenger.SendToListeners(new PossessMessage(gameObject, "Possess", "Requesting to become possessed."));
 		dispossessTimerActive = true;
 
@@ -37,7 +37,7 @@ public class Enemy : MessageBehaviour {
 		GetComponent<BoxCollider2D>().enabled = false;
 	}
 
-	void FixedUpdate() {
+	protected void FixedUpdate() {
 
 		// Retrieve a list of objects that are in the enemies alarmed zone.
 		Collider2D[] inSight = Physics2D.OverlapCircleAll(transform.position, alarmedThreshold);
@@ -119,7 +119,7 @@ public class Enemy : MessageBehaviour {
 		}
 	}
 
-	void Update () {
+	protected void Update () {
 		if (dispossessTimerActive) {
 			DispossessTimer();
 		}
