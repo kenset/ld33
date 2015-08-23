@@ -37,78 +37,86 @@ public class Enemy : MessageBehaviour {
 	public bool debug = false;
 
 	protected void OnMouseDown() {
-		Messenger.SendToListeners(new PossessMessage(gameObject, "Possess", "Requesting to become possessed."));
-		dispossessTimerActive = true;
 
-		GetComponent<Renderer>().enabled = false;
-		GetComponent<BoxCollider2D>().enabled = false;
+		// We don't want to update if the player is possessed.
+		if (dispossessTimerActive == false) {
+			Messenger.SendToListeners(new PossessMessage(gameObject, "Possess", "Requesting to become possessed."));
+			dispossessTimerActive = true;
+
+			GetComponent<Renderer>().enabled = false;
+			GetComponent<BoxCollider2D>().enabled = false;
+		}
 	}
 
 	protected void FixedUpdate() {
 
-		// Retrieve a list of objects that are in the enemies alarmed zone.
-		Collider2D[] inSight = Physics2D.OverlapCircleAll(transform.position, alarmedThreshold);
+		// We don't want to update if the player is possessed.
+		if (dispossessTimerActive == false) {
 
-		// For every object that the enemy has the potential to see...
-		foreach (Collider2D seenObject in inSight) {
+			// Retrieve a list of objects that are in the enemies alarmed zone.
+			Collider2D[] inSight = Physics2D.OverlapCircleAll(transform.position, alarmedThreshold);
 
-			// If the player is within the enemy's alarmed zone...
-			if (seenObject.gameObject.tag.Equals("Player")) {
-				
-				// Calculate the direction between the enemy and the player.
-				Vector3 direction = (seenObject.transform.position - transform.position).normalized;
-				
-				// If the angle between the enemy and the player is within the
-				// enemy's line of sight...
-				if (Vector3.Angle(transform.up, direction) > sightAngle) {
+			// For every object that the enemy has the potential to see...
+			foreach (Collider2D seenObject in inSight) {
+
+				// If the player is within the enemy's alarmed zone...
+				if (seenObject.gameObject.tag.Equals("Player")) {
 					
-					// Check to see if anything is between the enemy and the player.
-					RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
+					// Calculate the direction between the enemy and the player.
+					Vector3 direction = (seenObject.transform.position - transform.position).normalized;
 					
-					if (debug) {
-
-						// In alarmed zone, but not yet seen.
-						Color rayColor = Color.blue;
+					// If the angle between the enemy and the player is within the
+					// enemy's line of sight...
+					if (Vector3.Angle(transform.up, direction) > sightAngle) {
 						
-						if (awarenessLevel == Awareness.Alarmed) {
-							rayColor = Color.yellow;
-						} else if (awarenessLevel == Awareness.Aggressive) {
-							rayColor = Color.red;
-						}
+						// Check to see if anything is between the enemy and the player.
+						RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
 						
-						Debug.DrawRay(transform.position, direction * hit.distance, rayColor);
-					}
-					
-					// If there is nothing between the enemy and the player...
-					if (hit.collider.gameObject.tag.Equals("Player")) {
-						if (awarenessLevel == Awareness.Unaware) {
+						if (debug) {
+
+							// In alarmed zone, but not yet seen.
+							Color rayColor = Color.blue;
 							
-							// Make the enemy alarmed.
-							awarenessLevel = Awareness.Alarmed;
-							alarmedTimerActive = true;
-
-							PerformAlarmedBehavior(seenObject.transform);
-						} else if (awarenessLevel == Awareness.Aggressive) {
-							PerformAggressiveBehavior(seenObject.transform);
+							if (awarenessLevel == Awareness.Alarmed) {
+								rayColor = Color.yellow;
+							} else if (awarenessLevel == Awareness.Aggressive) {
+								rayColor = Color.red;
+							}
+							
+							Debug.DrawRay(transform.position, direction * hit.distance, rayColor);
 						}
-					} 
+						
+						// If there is nothing between the enemy and the player...
+						if (hit.collider.gameObject.tag.Equals("Player")) {
+							if (awarenessLevel == Awareness.Unaware) {
+								
+								// Make the enemy alarmed.
+								awarenessLevel = Awareness.Alarmed;
+								alarmedTimerActive = true;
 
-					// Otherwise something interrupted the enemy's line of sight, but
-					// the enemy was merely alarmed.
-					else if (awarenessLevel == Awareness.Alarmed) {
+								PerformAlarmedBehavior(seenObject.transform);
+							} else if (awarenessLevel == Awareness.Aggressive) {
+								PerformAggressiveBehavior(seenObject.transform);
+							}
+						} 
 
-						// Reset the enemy's level of awareness.
-						awarenessLevel = Awareness.Unaware;
-						alarmedTimerActive = false;
-						alarmedTimerLeft = alarmedStateLength;
-					}
+						// Otherwise something interrupted the enemy's line of sight, but
+						// the enemy was merely alarmed.
+						else if (awarenessLevel == Awareness.Alarmed) {
 
-					// Otherwise something interrupted the enemy's line of sight, but
-					// they are still aggressive. We should start the aggression cooldown.
-					// The enemy should be aggressive but not be in an aggression cooldown.
-					else if (awarenessLevel == Awareness.Aggressive && aggressionCooldownTimerActive == false) {
-						aggressionCooldownTimerActive = true;
-						aggressionCooldownTimerLeft = aggressionCooldownLength;
+							// Reset the enemy's level of awareness.
+							awarenessLevel = Awareness.Unaware;
+							alarmedTimerActive = false;
+							alarmedTimerLeft = alarmedStateLength;
+						}
+
+						// Otherwise something interrupted the enemy's line of sight, but
+						// they are still aggressive. We should start the aggression cooldown.
+						// The enemy should be aggressive but not be in an aggression cooldown.
+						else if (awarenessLevel == Awareness.Aggressive && aggressionCooldownTimerActive == false) {
+							aggressionCooldownTimerActive = true;
+							aggressionCooldownTimerLeft = aggressionCooldownLength;
+						}
 					}
 				}
 			}
@@ -136,20 +144,23 @@ public class Enemy : MessageBehaviour {
 
 	protected void Update () {
 
+		// We don't want to update if the player is possessed.
+
 		// Call different timers if applicable.
 		if (dispossessTimerActive) {
 			DispossessTimer();
-		}
-		if (alarmedTimerActive) {
-			AlarmedTimer();
-		}
-		if (aggressionCooldownTimerActive) {
-			AggressionCooldownTimer();
-		}
+		} else {
+			if (alarmedTimerActive) {
+				AlarmedTimer();
+			}
+			if (aggressionCooldownTimerActive) {
+				AggressionCooldownTimer();
+			}
 
 
-		if (awarenessLevel == Awareness.Unaware) {
-			Patrol();
+			if (awarenessLevel == Awareness.Unaware) {
+				Patrol();
+			}
 		}
 	}
 
