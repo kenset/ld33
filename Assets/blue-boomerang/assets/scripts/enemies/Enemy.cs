@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MessageBehaviour {
 
@@ -18,6 +19,9 @@ public class Enemy : MessageBehaviour {
 	private bool dispossessTimerActive = false;
 	private bool alarmedTimerActive = false;	
 	private float alarmedTimerLeft;
+
+	public List<Transform> waypoints = new List<Transform>();
+	private int currentWaypoint;
 
 	private enum Awareness {
 		Unaware,
@@ -92,6 +96,7 @@ public class Enemy : MessageBehaviour {
 
 						// Reset the enemy's level of awareness.
 						awarenessLevel = Awareness.Unaware;
+						alarmedTimerActive = false;
 						alarmedTimerLeft = alarmedStateLength;
 					}
 				}
@@ -99,13 +104,9 @@ public class Enemy : MessageBehaviour {
 		}
 	}
 
-	protected virtual void PerformAlarmedBehavior(Transform t) {
+	protected virtual void PerformAlarmedBehavior(Transform t) {}
 
-	}
-
-	protected virtual void PerformAggressiveBehavior(Transform t) {
-
-	}
+	protected virtual void PerformAggressiveBehavior(Transform t) {}
 
 	protected override void OnStart () {
 		awarenessLevel = Awareness.Unaware;
@@ -114,6 +115,10 @@ public class Enemy : MessageBehaviour {
 
 		if (alarmedThreshold < aggressiveThreshold) {
 			print ("'alarmedThreshold' should be greater than 'aggressiveThreshold'");
+		}
+
+		if (waypoints.Count > 0) {
+			currentWaypoint = 0;
 		}
 	}
 
@@ -124,10 +129,29 @@ public class Enemy : MessageBehaviour {
 		if (alarmedTimerActive) {
 			AlarmedTimer();
 		}
+
+		if (awarenessLevel == Awareness.Unaware) {
+			Patrol();
+		}
+	}
+
+	private void Patrol() {
+
+		if (Vector3.Distance(transform.position, waypoints[currentWaypoint].position) <= 0.01) {
+			if ((currentWaypoint + 1) == waypoints.Count) {
+				currentWaypoint = 0;
+			} else {
+				currentWaypoint++;
+			}
+		}
+
+		GetComponent<SimpleAI2D>().Player = waypoints[currentWaypoint];
 	}
 
 	private void AlarmedTimer() {
 		alarmedTimerLeft -= Time.deltaTime;
+
+		print(alarmedTimerLeft);
 
 		if (alarmedTimerLeft <= 0.0f) {
 			awarenessLevel = Awareness.Aggressive;

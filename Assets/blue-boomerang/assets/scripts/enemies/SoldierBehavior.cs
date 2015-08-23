@@ -4,7 +4,7 @@ using System.Collections;
 public class SoldierBehavior : Enemy {
 
 	protected override void PerformAlarmedBehavior(Transform t) {
-		print ("performing soldier alarmed behavior");
+//		print ("performing soldier alarmed behavior");
 	}
 	
 	protected override void PerformAggressiveBehavior(Transform t) {
