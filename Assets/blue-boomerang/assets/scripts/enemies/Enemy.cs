@@ -169,8 +169,6 @@ public class Enemy : MessageBehaviour {
 	private void AggressionCooldownTimer() {
 		aggressionCooldownTimerLeft -= Time.deltaTime;
 
-		print(aggressionCooldownTimerLeft);
-
 		if (aggressionCooldownTimerLeft <= 0.0f) {
 			awarenessLevel = Awareness.Unaware;
 
