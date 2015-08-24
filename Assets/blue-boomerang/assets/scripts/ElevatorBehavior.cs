@@ -20,8 +20,11 @@ public class ElevatorBehavior : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag.Equals("Player")) {
-			if (other.gameObject.GetComponent<PlayerPossession>().possessed.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Scientist) {
-				open = true;
+			GameObject possessed = other.gameObject.GetComponent<PlayerPossession>().possessed;
+			if (possessed != null) {
+				if (possessed.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Scientist) {
+					open = true;
+				}
 			}
 		}
 	}
