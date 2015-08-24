@@ -14,7 +14,7 @@ public class mainmenu : menu {
 
 		if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) {
 			if (selection == 0) {
-				Application.LoadLevel("game");
+				Application.LoadLevel("HowToPlay");
 			} else if (selection == 1) {
 				Application.LoadLevel("Credits");
 			} else if (selection == 2) {
