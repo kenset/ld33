@@ -29,6 +29,8 @@ public class PlayerPossession : MessageBehaviour {
 
 		if (possessed != null) {
 			GetComponent<SpriteRenderer>().color = Color.Lerp(Color.white, new Color(0.1f, 0.1f, 0.1f, 1.0f), lerpControl);
+		} else {
+			lerpControl = 0;
 		}
 
 		if (lerpControl < 1) {
@@ -58,6 +60,8 @@ public class PlayerPossession : MessageBehaviour {
 				}
 			}
 		}
+		GetComponent<SpriteRenderer>().color = Color.white;
+		lerpControl = 0;
 	}
 
 	void Possess (PossessMessage message) {
@@ -84,6 +88,7 @@ public class PlayerPossession : MessageBehaviour {
 		// Revert to the Player's original sprite.
 		GetComponent<SpriteRenderer>().sprite = originalSprite;
 		GetComponent<SpriteRenderer>().color = Color.white;
+		lerpControl = 0;
 
 		if (message.possessed.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Scientist) {
 			Instantiate(deadScientist, transform.position, Quaternion.identity);
