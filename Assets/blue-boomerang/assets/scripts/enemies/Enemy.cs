@@ -205,10 +205,10 @@ public class Enemy : MessageBehaviour {
 		if (waypoints.Count > 0) {
 			currentWaypoint = 0;
 		}
-	}
 
-	void OnMouseOver() {
-
+		foreach (Transform waypoint in waypoints) {
+			waypoint.gameObject.GetComponent<SpriteRenderer>().sprite = null;
+		}
 	}
 
 	protected virtual void Update () {
@@ -237,6 +237,11 @@ public class Enemy : MessageBehaviour {
 		} else {
 			GetComponent<SimpleAI2D>().Speed = 2.0f;
 		}
+
+//		if (awarenessLevel == Awareness.Aggressive && 
+//		    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPossession>().possessed != null) {
+//			awarenessLevel = Awareness.Unaware;
+//		}
 	}
 
 	public void ReceiveAlert(Transform target) {

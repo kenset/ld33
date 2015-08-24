@@ -31,7 +31,7 @@ public class SoldierBehavior : Enemy {
 
 				// Kill the player after a half-second delay.
 				hit.collider.gameObject.GetComponent<PlayerMobility>().Invoke("Die", 0.5f);
-			}
+			} 
 		}
 	}
 

@@ -26,6 +26,12 @@ public class PlayerMobility : MessageBehaviour {
 		} else {
 			monsterDead = true;
 		}
+
+		Invoke("GoToMainMenu", 3.0f);
+	}
+
+	void GoToMainMenu() {
+		Application.LoadLevel("MainMenu");
 	}
 
 	protected override void OnStart () {
