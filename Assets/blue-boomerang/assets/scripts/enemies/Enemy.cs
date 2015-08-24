@@ -207,6 +207,10 @@ public class Enemy : MessageBehaviour {
 		}
 	}
 
+	void OnMouseOver() {
+
+	}
+
 	protected virtual void Update () {
 
 		// We don't want to update if the player is possessing us.

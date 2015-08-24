@@ -6,7 +6,7 @@ public class PlayerMobility : MessageBehaviour {
 	public float speed;
 	private Animator anim;
 
-	public bool hotline = true;
+	public bool monsterDead = false;
 
 	void FixedUpdate(){ 
 
@@ -24,33 +24,12 @@ public class PlayerMobility : MessageBehaviour {
 
 	void Update () {
 
-		if (hotline) {
+		if (monsterDead == false) {
+			print (monsterDead);
 			transform.Translate(new Vector3(Input.GetAxis("Horizontal") * speed, 0, 0), Space.World);
 			transform.Translate(new Vector3(0, Input.GetAxis ("Vertical") * speed, 0), Space.World);
 		} else {
-			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
-				
-				Vector3 newPosition = transform.position;
-				
-				if (Input.GetKey(KeyCode.D)) {
-					newPosition += Vector3.right;
-					anim.SetTrigger("walk_down");
-				}
-				if (Input.GetKey(KeyCode.A)) {
-					newPosition += Vector3.left;
-					anim.SetTrigger("walk_down");
-				}
-				if (Input.GetKey(KeyCode.W)) {
-					newPosition += Vector3.up;
-					anim.SetTrigger("walk_down");
-				}
-				if (Input.GetKey(KeyCode.S)) {
-					newPosition += Vector3.down;
-					anim.SetTrigger("walk_down");
-				}
-				
-				transform.position = Vector3.MoveTowards(transform.position, newPosition, speed);
-			}
-		}
+			GetComponent<SpriteRenderer>().color = Color.red;
+		} 
 	}	
 }
