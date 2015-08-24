@@ -13,6 +13,8 @@ public class PlayerPossession : MessageBehaviour {
 
 	private Sprite originalSprite;
 
+	private float lerpControl;
+
 	protected override void OnStart () {
 		Messenger.RegisterListener(new Listener("Possess", gameObject, "Possess"));
 		Messenger.RegisterListener(new Listener("Dispossess", gameObject, "Dispossess"));
@@ -23,6 +25,15 @@ public class PlayerPossession : MessageBehaviour {
 	void Update () {
 		if (Input.GetKeyDown("space")) {
 			EjectPossessedBody(true);
+		}
+
+		if (possessed != null) {
+			GetComponent<SpriteRenderer>().color = Color.Lerp(Color.white, new Color(0.1f, 0.1f, 0.1f, 1.0f), lerpControl);
+		}
+
+		if (lerpControl < 1) {
+			// increment it at the desired rate every update:
+			lerpControl += Time.deltaTime / 10.0f;
 		}
 	}
 
@@ -72,6 +83,7 @@ public class PlayerPossession : MessageBehaviour {
 
 		// Revert to the Player's original sprite.
 		GetComponent<SpriteRenderer>().sprite = originalSprite;
+		GetComponent<SpriteRenderer>().color = Color.white;
 
 		if (message.possessed.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Scientist) {
 			Instantiate(deadScientist, transform.position, Quaternion.identity);
