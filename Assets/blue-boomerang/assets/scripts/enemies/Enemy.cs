@@ -16,7 +16,7 @@ public class Enemy : MessageBehaviour {
 	public float alarmedStateLength = 2.0f;
 	public float aggressionCooldownLength = 5.0f;
 
-	private bool dispossessTimerActive = false;
+	public bool dispossessTimerActive = false;
 	private bool alarmedTimerActive = false;	
 	private bool aggressionCooldownTimerActive = false;
 
@@ -26,13 +26,13 @@ public class Enemy : MessageBehaviour {
 	public List<Transform> waypoints = new List<Transform>();
 	private int currentWaypoint;
 
-	private enum Awareness {
+	public enum Awareness {
 		Unaware,
 		Alarmed,
 		Aggressive
 	}
 
-	private Awareness awarenessLevel;
+	public Awareness awarenessLevel;
 
 	public bool debug = false;
 
@@ -64,14 +64,23 @@ public class Enemy : MessageBehaviour {
 					
 					// Calculate the direction between the enemy and the player.
 					Vector3 direction = (seenObject.transform.position - transform.position).normalized;
-					
+
 					// If the angle between the enemy and the player is within the
 					// enemy's line of sight...
 					if (Vector3.Angle(transform.up, direction) > sightAngle) {
+				
+						// Make a layer mask to ignore the enemy layer when raycasting.
+
+						// Bit shift the index of the layer (8) to get a bit mask
+						int layerMask = 1 << 8;
 						
+						// This would cast rays only against colliders in layer 8.
+						// But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+						layerMask = ~layerMask;
+
 						// Check to see if anything is between the enemy and the player.
-						RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
-						
+						RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, layerMask);
+
 						if (debug) {
 
 							// In alarmed zone, but not yet seen.
@@ -142,7 +151,7 @@ public class Enemy : MessageBehaviour {
 		}
 	}
 
-	protected void Update () {
+	protected virtual void Update () {
 
 		// We don't want to update if the player is possessed.
 
@@ -157,10 +166,19 @@ public class Enemy : MessageBehaviour {
 				AggressionCooldownTimer();
 			}
 
-
-			if (awarenessLevel == Awareness.Unaware) {
+			if (awarenessLevel != Awareness.Aggressive) {
 				Patrol();
 			}
+		}
+	}
+
+	public void ReceiveAlert(Transform target) {
+
+		if (dispossessTimerActive == false) {
+			awarenessLevel = Awareness.Aggressive;
+			PerformAggressiveBehavior(target);
+
+			GetComponent<SpriteRenderer>().color = Color.red;
 		}
 	}
 

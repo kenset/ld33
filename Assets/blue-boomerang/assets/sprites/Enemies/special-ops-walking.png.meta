@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0af693c8fee76ca46ae1edf8da3918d5
-timeCreated: 1440275791
+timeCreated: 1440374087
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,6 +16,18 @@ TextureImporter:
     21300018: special ops walking sprites_9
     21300020: special ops walking sprites_10
     21300022: special ops walking sprites_11
+    21300024: special-ops-walking_0
+    21300026: special-ops-walking_1
+    21300028: special-ops-walking_2
+    21300030: special-ops-walking_3
+    21300032: special-ops-walking_4
+    21300034: special-ops-walking_5
+    21300036: special-ops-walking_6
+    21300038: special-ops-walking_7
+    21300040: special-ops-walking_8
+    21300042: special-ops-walking_9
+    21300044: special-ops-walking_10
+    21300046: special-ops-walking_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -61,125 +73,125 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: special ops walking sprites_0
+    - name: special-ops-walking_0
       rect:
         serializedVersion: 2
         x: 8
         y: 98
-        width: 18
+        width: 17
         height: 31
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_1
+    - name: special-ops-walking_1
       rect:
         serializedVersion: 2
         x: 40
         y: 98
         width: 18
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_2
+    - name: special-ops-walking_2
       rect:
         serializedVersion: 2
         x: 72
         y: 98
         width: 18
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_3
+    - name: special-ops-walking_3
       rect:
         serializedVersion: 2
         x: 9
         y: 66
         width: 15
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_4
+    - name: special-ops-walking_4
       rect:
         serializedVersion: 2
         x: 41
         y: 66
         width: 15
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_5
+    - name: special-ops-walking_5
       rect:
         serializedVersion: 2
         x: 73
         y: 66
         width: 15
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_6
+    - name: special-ops-walking_6
       rect:
         serializedVersion: 2
         x: 9
         y: 34
         width: 15
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_7
+    - name: special-ops-walking_7
       rect:
         serializedVersion: 2
         x: 41
-        y: 34
+        y: 35
         width: 15
-        height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_8
+    - name: special-ops-walking_8
       rect:
         serializedVersion: 2
         x: 73
         y: 34
         width: 15
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_9
+    - name: special-ops-walking_9
       rect:
         serializedVersion: 2
         x: 7
         y: 2
         width: 18
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_10
+    - name: special-ops-walking_10
       rect:
         serializedVersion: 2
         x: 39
         y: 2
         width: 18
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: special ops walking sprites_11
+    - name: special-ops-walking_11
       rect:
         serializedVersion: 2
         x: 71
         y: 2
         width: 18
         height: 31
-      alignment: 2
-      pivot: {x: .5, y: 1}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

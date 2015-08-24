@@ -11,11 +11,11 @@ public class PlayerMobility : MessageBehaviour {
 	void FixedUpdate(){ 
 
 		// Always point the player towards the cursor.
-		var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+//		var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 //		transform.rotation = Quaternion.LookRotation(transform.position - mousePosition, Vector3.forward);
 
 		// To keep the rotation from skewing.
-		transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z);
+//		transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z);
 	}
 	
 	protected override void OnStart () {
