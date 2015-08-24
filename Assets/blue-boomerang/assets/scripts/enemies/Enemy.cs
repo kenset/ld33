@@ -238,6 +238,14 @@ public class Enemy : MessageBehaviour {
 			GetComponent<SimpleAI2D>().Speed = 2.0f;
 		}
 
+		if (awarenessLevel == Awareness.Alarmed) {
+			GetComponent<SpriteRenderer>().color = Color.yellow;
+		} else if (awarenessLevel == Awareness.Unaware) {
+			GetComponent<SpriteRenderer>().color = Color.white;
+		} else if (awarenessLevel == Awareness.Aggressive) {
+			GetComponent<SpriteRenderer>().color = Color.red;
+		}
+
 //		if (awarenessLevel == Awareness.Aggressive && 
 //		    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPossession>().possessed != null) {
 //			awarenessLevel = Awareness.Unaware;
