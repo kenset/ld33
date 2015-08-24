@@ -37,8 +37,7 @@ public class ScientistBehavior : Enemy {
 			for (int i = 0; i < allies.Length; i++) {
 
 				// Make the current ally the closest one that is not already aggressive.
-				if (allies[i] != null && 
-				    allies[i].GetComponent<Enemy>().awarenessLevel != Awareness.Aggressive &&
+				if (allies[i] != null && allies[i].GetComponent<Enemy>().awarenessLevel != Awareness.Aggressive &&
 				    allies[i].GetComponent<Enemy>().dispossessTimerActive == false) {
 					currentHelper = i;
 					break;

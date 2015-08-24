@@ -5,6 +5,9 @@ public class PlayerPossession : MessageBehaviour {
 
 	public GameObject effect;
 
+	// The farthest an enemy can be before you cannot possess it.
+	public float maxPossessionDistance = 3.0f;
+
 	private Sprite originalSprite;
 
 	protected override void OnStart () {

@@ -40,11 +40,42 @@ public class Enemy : MessageBehaviour {
 
 		// We don't want to update if the player is possessed.
 		if (dispossessTimerActive == false) {
-			Messenger.SendToListeners(new PossessMessage(gameObject, "Possess", "Requesting to become possessed."));
-			dispossessTimerActive = true;
 
-			GetComponent<Renderer>().enabled = false;
-			GetComponent<BoxCollider2D>().enabled = false;
+			// Get the player.
+			GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+			// Are we close enough to the player to become possessed?
+			if ((player.transform.position - transform.position).magnitude < 
+			    player.GetComponent<PlayerPossession>().maxPossessionDistance) {
+
+				// Make sure that there is nothing between the enemy and the player.
+
+				// Make a layer mask to ignore the enemy layer when raycasting.
+				
+				// Bit shift the index of the layer (8) to get a bit mask
+				int layerMask = 1 << 8;
+				
+				// This would cast rays only against colliders in layer 8.
+				// But instead we want to collide against everything except layer 8. 
+				// The ~ operator inverts a bitmask.
+				layerMask = ~layerMask;
+
+				Vector3 direction = (player.transform.position - transform.position).normalized;
+
+				RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, layerMask);
+
+				print (hit.collider.gameObject);
+
+				if (hit.collider.gameObject.tag.Equals("Player")) {
+
+					// Start possession.
+					Messenger.SendToListeners(new PossessMessage(gameObject, "Possess", "Requesting to become possessed."));
+					dispossessTimerActive = true;
+					
+					GetComponent<Renderer>().enabled = false;
+					GetComponent<BoxCollider2D>().enabled = false;
+				}
+			}
 		}
 	}
 
@@ -75,7 +106,8 @@ public class Enemy : MessageBehaviour {
 						int layerMask = 1 << 8;
 						
 						// This would cast rays only against colliders in layer 8.
-						// But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+						// But instead we want to collide against everything except layer 8. 
+						// The ~ operator inverts a bitmask.
 						layerMask = ~layerMask;
 
 						// Check to see if anything is between the enemy and the player.
