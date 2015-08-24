@@ -226,6 +226,13 @@ public class Enemy : MessageBehaviour {
 				Patrol();
 			}
 		}
+
+		// Increase the enemy speed if they are aggressive.
+		if (awarenessLevel == Awareness.Aggressive) {
+			GetComponent<SimpleAI2D>().Speed = 3.0f;
+		} else {
+			GetComponent<SimpleAI2D>().Speed = 2.0f;
+		}
 	}
 
 	public void ReceiveAlert(Transform target) {
