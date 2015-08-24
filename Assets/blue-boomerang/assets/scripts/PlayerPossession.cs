@@ -4,9 +4,12 @@ using System.Collections;
 public class PlayerPossession : MessageBehaviour {
 
 	public GameObject effect;
+	public GameObject deadScientist;
+	public GameObject deadSoldier;
 
 	// The farthest an enemy can be before you cannot possess it.
 	public float maxPossessionDistance = 3.0f;
+	public GameObject possessed;
 
 	private Sprite originalSprite;
 
@@ -23,20 +26,38 @@ public class PlayerPossession : MessageBehaviour {
 
 	void Possess (PossessMessage message) {
 
+		// Eject the currently possessed body if we want to possess someone else.
+		if (possessed != null) {
+			GameObject toDispossess = possessed;
+			possessed.GetComponent<Enemy>().dispossessTimerActive = false;
+			Dispossess(new PossessMessage(possessed, "Dispossess", "Force dispossess currently possessed"));
+			DestroyObject(toDispossess);
+		}
+
 		// Move to the possessed's location.
 		transform.position = message.possessed.transform.position;
-		GetComponent<SpriteRenderer>().sprite = message.possessed.GetComponent<SpriteRenderer>().sprite;;
+		GetComponent<SpriteRenderer>().sprite = message.possessed.GetComponent<SpriteRenderer>().sprite;
+		possessed = message.possessed;
 
 		// Display the possess effect.
 		Instantiate(effect, transform.position, Quaternion.identity);
 	}
 
-	public void Dispossess() {
+	public void Dispossess(PossessMessage message) {
 
 		// Display the possess effect.
 		Instantiate(effect, transform.position, Quaternion.identity);
 
 		// Revert to the Player's original sprite.
 		GetComponent<SpriteRenderer>().sprite = originalSprite;
+
+		if (message.possessed.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Scientist) {
+			Instantiate(deadScientist, transform.position, Quaternion.identity);
+		}
+		if (message.possessed.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Soldier) {
+			Instantiate(deadSoldier, transform.position, Quaternion.identity);
+		}
+
+		possessed = null;
 	}
 }

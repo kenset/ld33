@@ -12,4 +12,10 @@ public class SoldierBehavior : Enemy {
 		// Set the seen Player as the object of pursuit.
 		GetComponent<SimpleAI2D>().Player = t;
 	}
+
+	protected override void OnStart() {
+		base.OnStart();
+		
+		enemyType = EnemyType.Soldier;
+	}
 }

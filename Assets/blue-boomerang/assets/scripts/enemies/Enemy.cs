@@ -34,6 +34,14 @@ public class Enemy : MessageBehaviour {
 
 	public Awareness awarenessLevel;
 
+	public enum EnemyType {
+		Enemy,
+		Scientist,
+		Soldier
+	}
+
+	public EnemyType enemyType = EnemyType.Enemy;
+
 	public bool debug = false;
 
 	protected void OnMouseDown() {
@@ -63,8 +71,6 @@ public class Enemy : MessageBehaviour {
 				Vector3 direction = (player.transform.position - transform.position).normalized;
 
 				RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, layerMask);
-
-				print (hit.collider.gameObject);
 
 				if (hit.collider.gameObject.tag.Equals("Player")) {
 
@@ -250,7 +256,7 @@ public class Enemy : MessageBehaviour {
 	private void DispossessTimer() {
 		timeToLive -= Time.deltaTime;
 
-		print (timeToLive);
+//		print (timeToLive);
 
 		if (timeToLive <= 0.0f) {
 			dispossessTimerActive = false;
@@ -259,7 +265,7 @@ public class Enemy : MessageBehaviour {
 		} else {
 
 			if (debug) {
-				print((int)timeToLive + " seconds");
+//				print((int)timeToLive + " seconds");
 			}
 		}
 	}

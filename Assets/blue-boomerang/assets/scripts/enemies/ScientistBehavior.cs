@@ -19,6 +19,12 @@ public class ScientistBehavior : Enemy {
 		searchingForHelp = true;
 	}
 
+	protected override void OnStart() {
+		base.OnStart();
+
+		enemyType = EnemyType.Scientist;
+	}
+
 	protected override void Update() {
 		base.Update();
 
