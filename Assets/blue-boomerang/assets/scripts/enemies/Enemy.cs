@@ -26,6 +26,8 @@ public class Enemy : MessageBehaviour {
 	public List<Transform> waypoints = new List<Transform>();
 	private int currentWaypoint;
 
+	protected bool isPossessed = false;
+
 	public enum Awareness {
 		Unaware,
 		Alarmed,
@@ -77,6 +79,7 @@ public class Enemy : MessageBehaviour {
 					// Start possession.
 					Messenger.SendToListeners(new PossessMessage(gameObject, "Possess", "Requesting to become possessed."));
 					dispossessTimerActive = true;
+					isPossessed = true;
 					
 					GetComponent<Renderer>().enabled = false;
 					GetComponent<BoxCollider2D>().enabled = false;
@@ -145,7 +148,7 @@ public class Enemy : MessageBehaviour {
 							} else if (awarenessLevel == Awareness.Aggressive) {
 								PerformAggressiveBehavior(seenObject.transform);
 							}
-						} 
+						}
 
 						// Otherwise something interrupted the enemy's line of sight, but
 						// the enemy was merely alarmed.
@@ -191,7 +194,7 @@ public class Enemy : MessageBehaviour {
 
 	protected virtual void Update () {
 
-		// We don't want to update if the player is possessed.
+		// We don't want to update if the player is possessing us.
 
 		// Call different timers if applicable.
 		if (dispossessTimerActive) {
@@ -246,7 +249,14 @@ public class Enemy : MessageBehaviour {
 	private void AlarmedTimer() {
 		alarmedTimerLeft -= Time.deltaTime;
 
-		if (alarmedTimerLeft <= 0.0f) {
+		float timeUp = 0.0f;
+
+		// If the player is posessing someone, increase the time left on the timer.
+		if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPossession>().possessed != null) {
+			timeUp = -5.0f;
+		}
+
+		if (alarmedTimerLeft <= timeUp) {
 			awarenessLevel = Awareness.Aggressive;
 
 			alarmedTimerActive = false;
