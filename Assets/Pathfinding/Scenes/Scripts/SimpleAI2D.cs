@@ -96,6 +96,7 @@ public class SimpleAI2D : Pathfinding2D
 
 			// Calculate direction
 			Vector3 direction = (ignoreZ - transform.position).normalized;
+			this.direction = direction;
 			if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && direction.y < 0) {
 				facing = Facing.down;
 //				print ("down");

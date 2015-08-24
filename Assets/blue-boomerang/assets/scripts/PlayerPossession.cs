@@ -12,6 +12,7 @@ public class PlayerPossession : MessageBehaviour {
 	public GameObject possessed;
 
 	private Sprite originalSprite;
+	private RuntimeAnimatorController originalAnimator;
 
 	private float lerpControl;
 
@@ -20,6 +21,7 @@ public class PlayerPossession : MessageBehaviour {
 		Messenger.RegisterListener(new Listener("Dispossess", gameObject, "Dispossess"));
 
 		originalSprite = GetComponent<SpriteRenderer>().sprite;
+		originalAnimator = GetComponent<Animator>().runtimeAnimatorController;
 	}
 
 	void Update () {
@@ -74,6 +76,7 @@ public class PlayerPossession : MessageBehaviour {
 		// Move to the possessed's location.
 		transform.position = message.possessed.transform.position;
 		GetComponent<SpriteRenderer>().sprite = message.possessed.GetComponent<SpriteRenderer>().sprite;
+		GetComponent<Animator>().runtimeAnimatorController = message.possessed.GetComponent<Animator>().runtimeAnimatorController;
 		possessed = message.possessed;
 
 		// Display the possess effect.
@@ -88,6 +91,7 @@ public class PlayerPossession : MessageBehaviour {
 		// Revert to the Player's original sprite.
 		GetComponent<SpriteRenderer>().sprite = originalSprite;
 		GetComponent<SpriteRenderer>().color = Color.white;
+		GetComponent<Animator>().runtimeAnimatorController = originalAnimator;
 		lerpControl = 0;
 
 		if (message.possessed.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Scientist) {
