@@ -11,6 +11,17 @@ public class SimpleAI2D : Pathfinding2D
     private bool search = true;
     private float tempDistance = 0F;
 
+	public Vector3 direction;
+
+	public enum Facing {
+		right,
+		left,
+		up,
+		down
+	}
+
+	public Facing facing = Facing.down;
+
 	void Start () 
     {
         //Make sure that we dont dividde by 0 in our search timer coroutine
@@ -81,7 +92,23 @@ public class SimpleAI2D : Pathfinding2D
             Vector3 ignoreZ = new Vector3(Path[0].x, Path[0].y, transform.position.z);
             
             //now move towards the newly created position
-            transform.position = Vector3.MoveTowards(transform.position, ignoreZ, Time.deltaTime * Speed);  
+            transform.position = Vector3.MoveTowards(transform.position, ignoreZ, Time.deltaTime * Speed);
+
+			// Calculate direction
+			Vector3 direction = (ignoreZ - transform.position).normalized;
+			if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && direction.y < 0) {
+				facing = Facing.down;
+//				print ("down");
+			} else if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && direction.y > 0) {
+				facing = Facing.up;
+//				print ("up");
+			} else if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && direction.x < 0) {
+				facing = Facing.left;
+//				print("left");
+			} else if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && direction.x > 0) {
+				facing = Facing.right;
+//				print("right");
+			}
         }
     }
 }

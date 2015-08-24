@@ -88,6 +88,14 @@ public class Enemy : MessageBehaviour {
 		}
 	}
 
+	private float CalculateAngle(Vector3 v1, Vector2 v2) {
+
+		Vector3 n = new Vector3(0, 0, -1.0f);
+		return Mathf.Atan2(
+			Vector3.Dot(n, Vector3.Cross(v1, v2)),
+			Vector3.Dot(v1, v2)) * Mathf.Rad2Deg;
+	}
+
 	protected void FixedUpdate() {
 
 		// We don't want to update if the player is possessed.
@@ -104,10 +112,17 @@ public class Enemy : MessageBehaviour {
 					
 					// Calculate the direction between the enemy and the player.
 					Vector3 direction = (seenObject.transform.position - transform.position).normalized;
-
+					float angle = CalculateAngle(transform.up, direction);
 					// If the angle between the enemy and the player is within the
 					// enemy's line of sight...
-					if (Vector3.Angle(transform.up, direction) > sightAngle) {
+
+					SimpleAI2D.Facing facing = GetComponent<SimpleAI2D>().facing;
+
+					// Yikes...
+					if (((facing == SimpleAI2D.Facing.down) && (angle <= (-90 - sightAngle)) || (angle >= (90 + sightAngle))) ||
+					    ((facing == SimpleAI2D.Facing.up) && (angle >= (-90 + sightAngle)) && (angle <= (90 - sightAngle))) ||
+					    ((facing == SimpleAI2D.Facing.left) && (angle <= (0 - sightAngle)) && (angle >= (-180 + sightAngle))) ||
+					    ((facing == SimpleAI2D.Facing.right) && (angle >= (0 + sightAngle)) && (angle <= (180 - sightAngle)))) {
 				
 						// Make a layer mask to ignore the enemy layer when raycasting.
 
