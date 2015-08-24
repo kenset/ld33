@@ -28,8 +28,9 @@ public class SoldierBehavior : Enemy {
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, layerMask);
 
 			if (hit.collider.gameObject.tag.Equals("Player")) {
-//				DestroyObject(hit.collider.gameObject);
-				hit.collider.gameObject.GetComponent<PlayerMobility>().monsterDead = true;
+
+				// Kill the player after a half-second delay.
+				hit.collider.gameObject.GetComponent<PlayerMobility>().Invoke("Die", 0.5f);
 			}
 		}
 	}

@@ -17,7 +17,11 @@ public class PlayerMobility : MessageBehaviour {
 		// To keep the rotation from skewing.
 //		transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z);
 	}
-	
+
+	public void Die() {
+		monsterDead = true;
+	}
+
 	protected override void OnStart () {
 		anim = GetComponent<Animator>();
 	}
