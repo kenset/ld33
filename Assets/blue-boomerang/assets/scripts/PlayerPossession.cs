@@ -22,27 +22,29 @@ public class PlayerPossession : MessageBehaviour {
 
 	void Update () {
 		if (Input.GetKeyDown("space")) {
-			EjectPossessedBody();
+			EjectPossessedBody(true);
 		}
 	}
 
-	void EjectPossessedBody() {
+	public void EjectPossessedBody(bool areaEffect) {
 		GameObject toDispossess = possessed;
 		possessed.GetComponent<Enemy>().dispossessTimerActive = false;
 		Dispossess(new PossessMessage(possessed, "Dispossess", "Force dispossess currently possessed"));
 		DestroyObject(toDispossess);
 
-		foreach (Collider2D o in Physics2D.OverlapCircleAll(transform.position, 1.5f)) {
-			if (o.gameObject.tag.Equals("Enemy")) {
+		if (areaEffect) {
+			foreach (Collider2D o in Physics2D.OverlapCircleAll(transform.position, 1.5f)) {
+				if (o.gameObject.tag.Equals("Enemy")) {
 
-				if (o.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Scientist) {
-					Instantiate(deadScientist, o.transform.position, Quaternion.identity);
-				}
-				if (o.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Soldier) {
-					Instantiate(deadSoldier, o.transform.position, Quaternion.identity);
-				}
+					if (o.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Scientist) {
+						Instantiate(deadScientist, o.transform.position, Quaternion.identity);
+					}
+					if (o.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Soldier) {
+						Instantiate(deadSoldier, o.transform.position, Quaternion.identity);
+					}
 
-				DestroyObject(o.gameObject);
+					DestroyObject(o.gameObject);
+				}
 			}
 		}
 	}
@@ -51,7 +53,7 @@ public class PlayerPossession : MessageBehaviour {
 
 		// Eject the currently possessed body if we want to possess someone else.
 		if (possessed != null) {
-			EjectPossessedBody();
+			EjectPossessedBody(false);
 		}
 
 		// Move to the possessed's location.

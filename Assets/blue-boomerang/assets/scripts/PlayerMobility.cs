@@ -19,7 +19,13 @@ public class PlayerMobility : MessageBehaviour {
 	}
 
 	public void Die() {
-		monsterDead = true;
+	
+		// If you are possessing someone, they die before you do.
+		if (GetComponent<PlayerPossession>().possessed != null) {
+			GetComponent<PlayerPossession>().EjectPossessedBody(false);
+		} else {
+			monsterDead = true;
+		}
 	}
 
 	protected override void OnStart () {
@@ -29,7 +35,6 @@ public class PlayerMobility : MessageBehaviour {
 	void Update () {
 
 		if (monsterDead == false) {
-			print (monsterDead);
 			transform.Translate(new Vector3(Input.GetAxis("Horizontal") * speed, 0, 0), Space.World);
 			transform.Translate(new Vector3(0, Input.GetAxis ("Vertical") * speed, 0), Space.World);
 		} else {
