@@ -24,6 +24,7 @@ public class ElevatorBehavior : MonoBehaviour {
 			if (possessed != null) {
 				if (possessed.GetComponent<Enemy>().enemyType == Enemy.EnemyType.Scientist) {
 					open = true;
+					Application.LoadLevel("GameOver");
 				}
 			}
 		}
