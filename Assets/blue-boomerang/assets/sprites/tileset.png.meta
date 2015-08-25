@@ -1,72 +1,72 @@
 fileFormatVersion: 2
-guid: 526f41c8ce195a64d9a3ffe9d6d0fd66
-timeCreated: 1440305127
+guid: 316bfceb5d1ee45e9a5b0ab4ab3a6cee
+timeCreated: 1440299422
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: tileset the thing_0
-    21300002: tileset the thing_1
-    21300004: tileset the thing_2
-    21300006: tileset the thing_3
-    21300008: tileset the thing_4
-    21300010: tileset the thing_5
-    21300012: tileset the thing_6
-    21300014: tileset the thing_7
-    21300016: tileset the thing_8
-    21300018: tileset the thing_9
-    21300020: tileset the thing_10
-    21300022: tileset the thing_11
-    21300024: tileset the thing_12
-    21300026: tileset the thing_13
-    21300028: tileset the thing_14
-    21300030: tileset the thing_15
-    21300032: tileset the thing_16
-    21300034: tileset the thing_17
-    21300036: tileset the thing_18
-    21300038: tileset the thing_19
-    21300040: tileset the thing_20
-    21300042: tileset the thing_21
-    21300044: tileset the thing_22
-    21300046: tileset the thing_23
-    21300048: tileset the thing_24
-    21300050: tileset the thing_25
-    21300052: tileset the thing_26
-    21300054: tileset the thing_27
-    21300056: tileset the thing_28
-    21300058: tileset the thing_29
-    21300060: tileset the thing_30
-    21300062: tileset the thing_31
-    21300064: tileset the thing_32
-    21300066: tileset the thing_33
-    21300068: tileset the thing_34
-    21300070: tileset the thing_35
-    21300072: tileset the thing_36
-    21300074: tileset the thing_37
-    21300076: tileset the thing_38
-    21300078: tileset the thing_39
-    21300080: tileset the thing_40
-    21300082: tileset the thing_41
-    21300084: tileset the thing_42
-    21300086: tileset the thing_43
-    21300088: tileset the thing_44
-    21300090: tileset the thing_45
-    21300092: tileset the thing_46
-    21300094: tileset the thing_47
-    21300096: tileset the thing_48
-    21300098: tileset the thing_49
-    21300100: tileset the thing_50
-    21300102: tileset the thing_51
-    21300104: tileset the thing_52
-    21300106: tileset the thing_53
-    21300108: tileset the thing_54
-    21300110: tileset the thing_55
-    21300112: tileset the thing_56
-    21300114: tileset the thing_57
-    21300116: tileset the thing_58
-    21300118: tileset the thing_59
-    21300120: tileset the thing_60
-    21300122: tileset the thing_61
-    21300124: tileset the thing_62
+    21300000: tileset_0
+    21300002: tileset_1
+    21300004: tileset_2
+    21300006: tileset_3
+    21300008: tileset_4
+    21300010: tileset_5
+    21300012: tileset_6
+    21300014: tileset_7
+    21300016: tileset_8
+    21300018: tileset_9
+    21300020: tileset_10
+    21300022: tileset_11
+    21300024: tileset_12
+    21300026: tileset_13
+    21300028: tileset_14
+    21300030: tileset_15
+    21300032: tileset_16
+    21300034: tileset_17
+    21300036: tileset_18
+    21300038: tileset_19
+    21300040: tileset_20
+    21300042: tileset_21
+    21300044: tileset_22
+    21300046: tileset_23
+    21300048: tileset_24
+    21300050: tileset_25
+    21300052: tileset_26
+    21300054: tileset_27
+    21300056: tileset_28
+    21300058: tileset_29
+    21300060: tileset_30
+    21300062: tileset_31
+    21300064: tileset_32
+    21300066: tileset_33
+    21300068: tileset_34
+    21300070: tileset_35
+    21300072: tileset_36
+    21300074: tileset_37
+    21300076: tileset_38
+    21300078: tileset_39
+    21300080: tileset_40
+    21300082: tileset_41
+    21300084: tileset_42
+    21300086: tileset_43
+    21300088: tileset_44
+    21300090: tileset_45
+    21300092: tileset_46
+    21300094: tileset_47
+    21300096: tileset_48
+    21300098: tileset_49
+    21300100: tileset_50
+    21300102: tileset_51
+    21300104: tileset_52
+    21300106: tileset_53
+    21300108: tileset_54
+    21300110: tileset_55
+    21300112: tileset_56
+    21300114: tileset_57
+    21300116: tileset_58
+    21300118: tileset_59
+    21300120: tileset_60
+    21300122: tileset_61
+    21300124: tileset_62
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -89,10 +89,10 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -2
+  textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -106,13 +106,13 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: tileset the thing_0
+    - name: tileset_0
       rect:
         serializedVersion: 2
         x: 1
@@ -120,9 +120,9 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_1
+    - name: tileset_1
       rect:
         serializedVersion: 2
         x: 34
@@ -130,9 +130,9 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_2
+    - name: tileset_2
       rect:
         serializedVersion: 2
         x: 67
@@ -142,7 +142,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_3
+    - name: tileset_3
       rect:
         serializedVersion: 2
         x: 100
@@ -150,9 +150,9 @@ TextureImporter:
         width: 5
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_4
+    - name: tileset_4
       rect:
         serializedVersion: 2
         x: 106
@@ -160,9 +160,9 @@ TextureImporter:
         width: 6
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_5
+    - name: tileset_5
       rect:
         serializedVersion: 2
         x: 113
@@ -172,7 +172,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_6
+    - name: tileset_6
       rect:
         serializedVersion: 2
         x: 121
@@ -180,9 +180,9 @@ TextureImporter:
         width: 5
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_7
+    - name: tileset_7
       rect:
         serializedVersion: 2
         x: 127
@@ -190,9 +190,9 @@ TextureImporter:
         width: 5
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_8
+    - name: tileset_8
       rect:
         serializedVersion: 2
         x: 133
@@ -202,7 +202,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_9
+    - name: tileset_9
       rect:
         serializedVersion: 2
         x: 150
@@ -212,7 +212,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_10
+    - name: tileset_10
       rect:
         serializedVersion: 2
         x: 167
@@ -222,7 +222,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_11
+    - name: tileset_11
       rect:
         serializedVersion: 2
         x: 184
@@ -232,7 +232,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_12
+    - name: tileset_12
       rect:
         serializedVersion: 2
         x: 201
@@ -242,7 +242,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_13
+    - name: tileset_13
       rect:
         serializedVersion: 2
         x: 218
@@ -252,7 +252,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_14
+    - name: tileset_14
       rect:
         serializedVersion: 2
         x: 235
@@ -262,7 +262,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_15
+    - name: tileset_15
       rect:
         serializedVersion: 2
         x: 133
@@ -272,7 +272,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_16
+    - name: tileset_16
       rect:
         serializedVersion: 2
         x: 150
@@ -282,7 +282,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_17
+    - name: tileset_17
       rect:
         serializedVersion: 2
         x: 167
@@ -292,7 +292,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_18
+    - name: tileset_18
       rect:
         serializedVersion: 2
         x: 184
@@ -302,7 +302,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_19
+    - name: tileset_19
       rect:
         serializedVersion: 2
         x: 201
@@ -312,7 +312,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_20
+    - name: tileset_20
       rect:
         serializedVersion: 2
         x: 218
@@ -322,7 +322,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_21
+    - name: tileset_21
       rect:
         serializedVersion: 2
         x: 1
@@ -332,7 +332,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_22
+    - name: tileset_22
       rect:
         serializedVersion: 2
         x: 34
@@ -340,9 +340,9 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_23
+    - name: tileset_23
       rect:
         serializedVersion: 2
         x: 67
@@ -352,7 +352,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_24
+    - name: tileset_24
       rect:
         serializedVersion: 2
         x: 100
@@ -362,7 +362,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_25
+    - name: tileset_25
       rect:
         serializedVersion: 2
         x: 108
@@ -372,7 +372,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_26
+    - name: tileset_26
       rect:
         serializedVersion: 2
         x: 114
@@ -380,9 +380,9 @@ TextureImporter:
         width: 6
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_27
+    - name: tileset_27
       rect:
         serializedVersion: 2
         x: 121
@@ -392,7 +392,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_28
+    - name: tileset_28
       rect:
         serializedVersion: 2
         x: 127
@@ -400,9 +400,9 @@ TextureImporter:
         width: 5
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_29
+    - name: tileset_29
       rect:
         serializedVersion: 2
         x: 133
@@ -412,7 +412,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_30
+    - name: tileset_30
       rect:
         serializedVersion: 2
         x: 150
@@ -422,7 +422,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_31
+    - name: tileset_31
       rect:
         serializedVersion: 2
         x: 167
@@ -432,7 +432,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_32
+    - name: tileset_32
       rect:
         serializedVersion: 2
         x: 184
@@ -442,7 +442,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_33
+    - name: tileset_33
       rect:
         serializedVersion: 2
         x: 235
@@ -452,7 +452,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_34
+    - name: tileset_34
       rect:
         serializedVersion: 2
         x: 268
@@ -462,7 +462,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_35
+    - name: tileset_35
       rect:
         serializedVersion: 2
         x: 301
@@ -472,7 +472,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_36
+    - name: tileset_36
       rect:
         serializedVersion: 2
         x: 334
@@ -482,7 +482,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_37
+    - name: tileset_37
       rect:
         serializedVersion: 2
         x: 1
@@ -492,7 +492,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_38
+    - name: tileset_38
       rect:
         serializedVersion: 2
         x: 34
@@ -502,7 +502,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_39
+    - name: tileset_39
       rect:
         serializedVersion: 2
         x: 67
@@ -510,9 +510,9 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_40
+    - name: tileset_40
       rect:
         serializedVersion: 2
         x: 100
@@ -520,9 +520,9 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_41
+    - name: tileset_41
       rect:
         serializedVersion: 2
         x: 133
@@ -530,9 +530,9 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_42
+    - name: tileset_42
       rect:
         serializedVersion: 2
         x: 150
@@ -542,7 +542,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_43
+    - name: tileset_43
       rect:
         serializedVersion: 2
         x: 167
@@ -552,7 +552,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_44
+    - name: tileset_44
       rect:
         serializedVersion: 2
         x: 235
@@ -560,9 +560,9 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_45
+    - name: tileset_45
       rect:
         serializedVersion: 2
         x: 301
@@ -572,7 +572,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_46
+    - name: tileset_46
       rect:
         serializedVersion: 2
         x: 1
@@ -580,9 +580,9 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_47
+    - name: tileset_47
       rect:
         serializedVersion: 2
         x: 133
@@ -590,9 +590,9 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_48
+    - name: tileset_48
       rect:
         serializedVersion: 2
         x: 166
@@ -602,7 +602,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_49
+    - name: tileset_49
       rect:
         serializedVersion: 2
         x: 199
@@ -610,9 +610,9 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_50
+    - name: tileset_50
       rect:
         serializedVersion: 2
         x: 235
@@ -622,7 +622,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_51
+    - name: tileset_51
       rect:
         serializedVersion: 2
         x: 268
@@ -632,7 +632,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_52
+    - name: tileset_52
       rect:
         serializedVersion: 2
         x: 301
@@ -642,7 +642,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_53
+    - name: tileset_53
       rect:
         serializedVersion: 2
         x: 334
@@ -652,7 +652,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_54
+    - name: tileset_54
       rect:
         serializedVersion: 2
         x: 100
@@ -662,7 +662,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_55
+    - name: tileset_55
       rect:
         serializedVersion: 2
         x: 133
@@ -672,7 +672,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_56
+    - name: tileset_56
       rect:
         serializedVersion: 2
         x: 166
@@ -682,7 +682,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_57
+    - name: tileset_57
       rect:
         serializedVersion: 2
         x: 201
@@ -690,9 +690,9 @@ TextureImporter:
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_58
+    - name: tileset_58
       rect:
         serializedVersion: 2
         x: 301
@@ -702,7 +702,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_59
+    - name: tileset_59
       rect:
         serializedVersion: 2
         x: 100
@@ -712,7 +712,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_60
+    - name: tileset_60
       rect:
         serializedVersion: 2
         x: 133
@@ -722,7 +722,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_61
+    - name: tileset_61
       rect:
         serializedVersion: 2
         x: 166
@@ -732,7 +732,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tileset the thing_62
+    - name: tileset_62
       rect:
         serializedVersion: 2
         x: 199
